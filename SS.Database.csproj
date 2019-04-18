@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net452</TargetFrameworks>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>SS.Database</PackageId>
+    <Version>1.0.0</Version>
+    <Title>数据库管理插件</Title>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>SiteServer CMS</Authors>
+    <Company>SiteServer CMS</Company>
+    <Product></Product>
+    <Description>实现数据库管理，进行SQL查询以及执行SQL命令</Description>
+    <PackageLicense>GPL-3.0</PackageLicense>
+    <PackageProjectUrl>https://github.com/siteserver/SS.Database</PackageProjectUrl>
+    <PackageIconUrl>https://www.siteserver.cn/docs/SS.Database/logo.svg</PackageIconUrl>
+    <Copyright>Copyright © SiteServer CMS</Copyright>
+    <PackageTags>SiteServer CMS Database Plugin</PackageTags>
+    <RepositoryUrl>https://github.com/siteserver/SS.Database</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="SiteServer.Plugin" Version="2.3.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="assets\**" />
+    <Content Include="pages\**" />
+  </ItemGroup>
+
+</Project>
