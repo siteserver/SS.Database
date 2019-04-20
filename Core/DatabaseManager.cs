@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using Dapper;
 using Datory;
@@ -16,34 +11,40 @@ namespace SS.Database.Core
 {
     public static class DatabaseManager
     {
-        public static Repository Repository => new Repository(Context.Environment.Database);
+        public static Repository Repository => new Repository(Context.Environment.DatabaseType, Context.Environment.ConnectionString);
 
         public static void ExecuteSql(string sqlString)
         {
             if (string.IsNullOrEmpty(sqlString)) return;
 
-            Repository.Database.Connection.Execute(sqlString);
+            using (var connection = new Connection(Context.Environment.DatabaseType, Context.Environment.ConnectionString))
+            {
+                connection.Execute(sqlString);
+            }
         }
 
         public static List<string> GetTableNameList()
         {
-            return DatoryUtils.GetTableNames(Context.Environment.Database);
+            return DatoryUtils.GetTableNames(Context.Environment.DatabaseType, Context.Environment.ConnectionString);
         }
 
         public static List<TableColumn> GetTableColumnInfoList(string tableName)
         {
-            return DatoryUtils.GetTableColumns(Context.Environment.Database, tableName);
+            return DatoryUtils.GetTableColumns(Context.Environment.DatabaseType, Context.Environment.ConnectionString, tableName);
         }
 
         public static int GetCount(string tableName)
         {
-            var repository = new Repository(Context.Environment.Database, tableName);
+            var repository = new Repository(Context.Environment.DatabaseType, Context.Environment.ConnectionString, tableName);
             return repository.Count();
         }
 
         public static List<dynamic> GetDataInfoList(string query)
         {
-            return Repository.Database.Connection.Query(query).ToList();
+            using (var connection = new Connection(Context.Environment.DatabaseType, Context.Environment.ConnectionString))
+            {
+                return connection.Query(query).ToList();
+            }
         }
 
         public static List<string> GetPropertyKeysForDynamic(dynamic dynamicToGetPropertiesFor)
@@ -110,7 +111,10 @@ namespace SS.Database.Core
 
         public static void Execute(string execute)
         {
-            Repository.Database.Connection.Execute(execute);
+            using (var connection = new Connection(Context.Environment.DatabaseType, Context.Environment.ConnectionString))
+            {
+                connection.Execute(execute);
+            }
         }
     }
 }
