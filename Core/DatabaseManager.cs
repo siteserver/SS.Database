@@ -54,7 +54,18 @@ namespace SS.Database.Core
             List<string> toReturn = new List<string>();
             foreach (string key in values.Keys)
             {
-                toReturn.Add(ToCamelCase(key));
+                if (Utils.EqualsIgnoreCase(key, "id"))
+                {
+                    toReturn.Add("id");
+                }
+                else if (Utils.EqualsIgnoreCase(key, "guid"))
+                {
+                    toReturn.Add("guid");
+                }
+                else
+                {
+                    toReturn.Add(ToCamelCase(key));
+                }
             }
 
             return toReturn;
