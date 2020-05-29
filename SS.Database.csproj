@@ -13,7 +13,7 @@
     <Description>实现数据库管理，进行SQL查询以及执行SQL命令</Description>
     <PackageLicense>GPL-3.0</PackageLicense>
     <PackageProjectUrl>https://github.com/siteserver/SS.Database</PackageProjectUrl>
-    <PackageIconUrl>https://www.siteserver.cn/docs/ss/database/logo.svg</PackageIconUrl>
+    <PackageIconUrl>https://storage.sscms.com/plugins/ss.database/logo.svg</PackageIconUrl>
     <Copyright>Copyright © SiteServer CMS</Copyright>
     <PackageTags>SiteServer CMS Database Plugin</PackageTags>
     <RepositoryUrl>https://github.com/siteserver/SS.Database</RepositoryUrl>
